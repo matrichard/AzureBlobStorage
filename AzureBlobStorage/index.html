@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Azure Blob Upload</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery-1.9.0.min.js"></script>
+    <script src="Scripts/angular.js"></script>
+</head>
+<body class="container-fluid" ng-app="app">
+    <div class="row well-lg" ng-controller="uploadCtrl">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="input-lg table-bordered">
+                <div class="input-group-lg">
+                    <input type="file" id="file" style="width:100%" />
+                </div>
+            </div>
+            <div class="well-lg table-bordered">
+                <span>Shared Access Signature : {{sasWrite}}</span>
+            </div>
+            <!--<div class="table-bordered">
+                <p>
+                    File Name : <span id="fileName"></span>
+                </p>
+                <p>
+                    File Size : <span id="fileSize"></span>
+                </p>
+                <p>
+                    File type : <span id="fileType"></span>
+                </p>
+            </div>-->
+            <div class="table-bordered">
+                <p>
+                    File Name : <span>{{selectedFile.name}}</span>
+                </p>                  
+                <p>                   
+                    File Size : <span>{{selectedFile.size}}</span>
+                </p>                  
+                <p>                   
+                    File type : <span>{{selectedFile.type}}</span>
+                </p>
+                <div style="text-align: center">
+                    <button class="btn btn-default btn-lg">
+                        <span><i class="glyphicon glyphicon-cloud-upload"></i>Upload</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //$('#file').bind('change', function (e) {
+        //    var selectedFile;
+        //    var files = e.target.files;
+        //    selectedFile = files[0];
+        //    $scope.selectedFile = files[0];;
+        //    $("#fileName").text(selectedFile.name);
+        //    $("#fileSize").text(selectedFile.size);
+        //    $("#fileType").text(selectedFile.type);
+        //});
+        angular.module('app', []);
+        angular.module('app').controller('uploadCtrl', function ($scope) {
+            $scope.selectedFile = "";
+            $('#file').bind('change', function (e) {
+                var files = e.target.files;
+                $scope.selectedFile = files[0];
+                $scope.$apply();
+            });
+        });
+    </script>
+</body>
+</html>
